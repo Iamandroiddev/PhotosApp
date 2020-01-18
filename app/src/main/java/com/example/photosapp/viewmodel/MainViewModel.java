@@ -10,15 +10,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.photosapp.common.DaoManager;
+import com.example.photosapp.common.DaoToUi;
+import com.example.photosapp.common.ResultCallbackListener;
+import com.example.photosapp.common.enums.ErrorEnum;
+import com.example.photosapp.dao.Photo;
+import com.example.photosapp.repo.MainRepo;
 import com.example.photosapp.responsemodel.FlickrRootResponseModel;
-import com.example.recyclerview.common.DaoManager;
-import com.example.recyclerview.common.DaoToUi;
-import com.example.recyclerview.common.ResultCallbackListener;
-import com.example.recyclerview.common.enums.ErrorEnum;
-import com.example.recyclerview.dao.Photo;
-import com.example.recyclerview.repo.MainRepo;
-import com.example.recyclerview.responsemodel.FlickrRootResponseModel;
-import com.example.recyclerview.view.model.PhotoListModel;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,6 +9,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.photosapp.api.ApiClient;
 import com.example.photosapp.api.ApiInterface;
+import com.example.photosapp.common.DaoManager;
+import com.example.photosapp.common.ResponseToDao;
+import com.example.photosapp.common.ResultCallbackListener;
 import com.example.photosapp.dao.Photo;
 import com.example.photosapp.dao.PhotoDao;
 import com.example.photosapp.responsemodel.FlickrRootResponseModel;
