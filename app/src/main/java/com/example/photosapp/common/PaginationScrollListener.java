@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-/**
- * Created by Manpreet Anand on 4/4/19.
- */
+
 abstract public class PaginationScrollListener extends RecyclerView.OnScrollListener {
     protected RecyclerView.LayoutManager mLayoutManager;
 

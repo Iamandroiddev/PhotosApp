@@ -1,8 +1,6 @@
 package com.example.photosapp.viewmodel;
 
-/**
- * Created by Manpreet Anand on 29/3/19.
- */
+
 public class PhotoListModel {
     private String mUrl;
     private String mId;

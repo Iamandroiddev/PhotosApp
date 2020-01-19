@@ -28,7 +28,6 @@ public class MainViewModel extends AndroidViewModel {
     private static final String LOGGER_TAG = MainViewModel.class.getSimpleName();
     public static final int INCREMENT_COUNT = 50;
     private static final int MAX_PER_PAGE_COUNT = 100;
-    private static final String DEFAULT_SEARCH_STRING = "teee"; //Default search string. It returns some really nice images ;)
 
     private int mCurrentPage = 1;
     private int mTotalPage = 0;
@@ -40,8 +39,6 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> mShowLoading;
     private MutableLiveData<ErrorEnum> mError;
     private MainRepo mMainModel;
-
-    private String mSearchString = null;
     private Observer<List<Photo>> mObserver;
 
     public MainViewModel(@NonNull Application application) {
@@ -53,7 +50,6 @@ public class MainViewModel extends AndroidViewModel {
         if (mPhotos == null) {
             mPhotos = new MutableLiveData<>();
             Log.d(LOGGER_TAG, "Fetching photos with default tag");
-           // fetchPhotosWithDefaultTag();
             fetchPhotos();
         }
 
@@ -100,35 +96,7 @@ public class MainViewModel extends AndroidViewModel {
         }
     }
 
-/*    private void fetchPhotosWithDefaultTag() {
 
-        fetchPhotos();
-    }*/
-
-   /* public void onSearchTapped(String searchString) {
-        if (isSearchStringInValid(searchString)) {
-            setError(ErrorEnum.INVALID_DATA);
-        } else {
-            mSearchString = searchString;
-           // resetPaginationFlags();
-            setPhotos(null);
-            DaoManager.getInstance(getApplication()).submitQuery(new Runnable() {
-                @Override
-                public void run() {
-                    mMainModel.deleteAllPhotos();
-                }
-            });
-            fetchPhotosFromWeb();
-        }
-    }*/
-
-
-
-
-
-    /**
-     * This method gets called when new photos from web are inserted in the DB.
-     */
     private void setupListenerForLastAddedPhotos() {
         if (mObserver == null) {
             mObserver = new Observer<List<Photo>>() {
@@ -144,7 +112,7 @@ public class MainViewModel extends AndroidViewModel {
                     }
                 }
             };
-            //mMainModel.getLastAddedPhotos().observeForever(mObserver);
+
         }
     }
 
@@ -153,7 +121,6 @@ public class MainViewModel extends AndroidViewModel {
                 new Runnable() {
                     @Override
                     public void run() {
-                        //First try and fetch photos from DB
                         List<Photo> photos = mMainModel.getPhotosInRange(mStartIndex, INCREMENT_COUNT);
                         onDbPhotosReceived(photos);
                     }
@@ -162,7 +129,6 @@ public class MainViewModel extends AndroidViewModel {
 
     private void onDbPhotosReceived(List<Photo> daoPhotos) {
         if (daoPhotos == null || daoPhotos.isEmpty()) {
-            //No photos received from DB, now fetch them from web
             fetchPhotosFromWeb();
         } else {
             List<PhotoListModel> photoListModels = new ArrayList<>();

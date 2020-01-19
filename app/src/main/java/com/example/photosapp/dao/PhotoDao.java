@@ -14,7 +14,6 @@ import java.util.List;
 @Dao
 public interface PhotoDao {
 
-    //This query fetches the most recently inserted rows in the db
     @Query("Select * from Photo limit 50 Offset (Select Count(*) from Photo) - 50")
     LiveData<List<Photo>> getLastAddedPhotos();
 

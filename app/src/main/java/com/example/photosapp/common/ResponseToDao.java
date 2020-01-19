@@ -29,6 +29,6 @@ public class ResponseToDao {
 
         return "https://farm" + FARMID + ".staticflickr.com/" +
                 SERVERID + "/" + ID + "_" +
-                SECRET + "_m" + ".jpg";
+                SECRET + ".jpg";
     }
 }

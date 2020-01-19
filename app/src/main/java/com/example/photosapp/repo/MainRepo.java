@@ -73,14 +73,7 @@ public class MainRepo {
             final List<Photo> daoPhotos = new ArrayList<>();
             List<PhotoResponseModel> photoResponseModel = body.getPhotosResponseModel().getPhotoResponseModel();
 
-            /*
-                Since Flickr provides no means to fetch photos from a min_range to max_range, we have to add logic so as to add
-                only the newly fetched photos and not the existing ones. So for eg while paginating, we want to fetch the next 50
-                photos and we already have 100 photos downloaded, we will create a request to fetch 150 photos. This will contain
-                previously fetched 100 photos and 50 new photos. Inorder to handle this case, we have take a sublist of last 50 photos
-                and then insert them in the database.
-                Math.min is applied to handle the case where we receive less than 50 photos.
-             */
+
             int from = photoResponseModel.size() - Math.min(photoResponseModel.size(), MainViewModel.INCREMENT_COUNT);
             int to = from + Math.min(photoResponseModel.size(), MainViewModel.INCREMENT_COUNT);
             for (PhotoResponseModel item : photoResponseModel.subList(from, to)) {
